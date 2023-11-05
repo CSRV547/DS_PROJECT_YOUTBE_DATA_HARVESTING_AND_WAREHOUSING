@@ -13,13 +13,13 @@ import plotly.express as px
 #================================= CONNECTION ===============================#
 
 #block of code to establish youtube api connection
-api_key="AIzaSyAd2cuIq7o7I9gCodBY1lulAz11izZr4m0"
+api_key="<YOUR API KEY>"
 api_service_name = "youtube"
 api_version = "v3"
 youtube = googleapiclient.discovery.build(api_service_name, api_version, developerKey=api_key)
 
 #block of code to establish connection with mysql and create database named youtube
-mycon = mysql.connector.connect(host="127.0.0.1",user="root",password="12345")
+mycon = mysql.connector.connect(host="127.0.0.1",user="root",password="<YOUR MYSQL PASSWORD>")
 mycursor = mycon.cursor()
 mycursor.execute(f"CREATE DATABASE IF NOT EXISTS youtube;")
 
@@ -292,7 +292,7 @@ if nav=="HOME":
         st.success("Data for concerned channel has been successfully retrived!")
         st.info(" **FOR MORE OPTIONS :** _Kindly help yourself through navigation panel_ ")
         df = sql_conv(st.session_state.results)#initialize converting nosql to sql
-        mycon = mysql.connector.connect(host="127.0.0.1", user="root", password="12345",database='youtube')
+        mycon = mysql.connector.connect(host="127.0.0.1", user="root", password="<YOUR MYSQL PASSWORD>",database='youtube')
         mycursor = mycon.cursor()
         table(df)#initialize declaring datatype and inserting data for sql
 
@@ -304,7 +304,7 @@ if nav=="HOME":
 #defining SQL_TABLE page to display table
 if nav == "SQL - TABLE":
     if st.session_state.ch_id:#process only if the input have been passed
-        mycon = mysql.connector.connect(host="127.0.0.1", user="root", password="12345",database='youtube')
+        mycon = mysql.connector.connect(host="127.0.0.1", user="root", password="<YOUR MYSQL PASSWORD>",database='youtube')
         mycursor = mycon.cursor()
         #block of code to display table channel
         if st.checkbox("Channel Data"):
@@ -359,7 +359,7 @@ if nav == "DATA ANALYSIS":
                                 '9. What is the average duration of all videos in each channel, and what are their corresponding channel names?',
                                 '10. Which videos have the highest number of comments, and what are their corresponding channel names?'),
                                key='collection_question')
-        mycon = mysql.connector.connect(host="127.0.0.1", user="root", password="12345", database='youtube')
+        mycon = mysql.connector.connect(host="127.0.0.1", user="root", password="<YOUR MYSQL PASSWORD>", database='youtube')
         mycursor = mycon.cursor()
         # block of code to analyse 1st query
         if queries == '1. What are the names of all the videos and their corresponding channels?':
